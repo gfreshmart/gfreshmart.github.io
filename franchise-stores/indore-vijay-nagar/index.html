@@ -199,6 +199,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
 .photo-tag{font-size:11.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--primary-green)}
 .photo-note{font-size:13px;line-height:1.55;color:var(--muted-text);margin-top:6px}
 .hero-media .photo{aspect-ratio:4/3;box-shadow:var(--card-shadow)}
+.photo.has-img{padding:0;background:none}
+.photo-img{width:100%;height:100%;object-fit:cover;display:block}
 
 /* ---------- key numbers bar (brand stats styling) ---------- */
 .stats-section{background:var(--white);padding:56px 0;border-top:1px solid var(--border-color);border-bottom:1px solid var(--border-color)}
@@ -995,7 +997,9 @@ tbody tr:last-child td:nth-child(3){color:var(--body-grey)}
     });
   });
 
-  /* ---------- gallery: one entry per photograph in the CMS ---------- */
+  /* ---------- gallery: one entry per photograph in the CMS ----------
+     Add  src:'img/<file>'  to any entry to show the real photograph in place of
+     the placeholder frame. Entries without a src keep the placeholder. */
   var PHOTOS = [
     {cat:'exterior', tag:'Exterior', cap:'Main entrance and G Fresh Mart signage on Scheme 54 Road', wide:true},
     {cat:'interior', tag:'Interior', cap:'Wide view of the store floor from the back wall'},
@@ -1013,8 +1017,17 @@ tbody tr:last-child td:nth-child(3){color:var(--body-grey)}
   var grid = document.getElementById('galleryGrid');
 
   function photoFrame(p){
+    /* With a src, render the real photograph; without one, show the placeholder frame. */
+    if (p.src) {
+      return '<div class="photo has-img"><img class="photo-img" src="' + p.src +
+             '" alt="' + plainText(p.cap) + '" loading="lazy" decoding="async"></div>';
+    }
     return '<div class="photo"><div class="photo-inner"><div class="photo-icon">' + CAM_ICON + '</div>' +
            '<p class="photo-tag">' + p.tag + '</p><p class="photo-note">' + p.cap + '</p></div></div>';
+  }
+
+  function plainText(html){
+    return html.replace(/&amp;/g, 'and').replace(/<[^>]*>/g, '').replace(/"/g, '');
   }
 
   PHOTOS.forEach(function(p, i){
@@ -1022,7 +1035,7 @@ tbody tr:last-child td:nth-child(3){color:var(--body-grey)}
     if (p.wide) fig.className = 'wide';
     fig.setAttribute('data-cat', p.cat);
     fig.innerHTML = '<button class="shot-btn" type="button" data-index="' + i + '" aria-label="Open photo: ' +
-                    p.cap.replace(/&amp;/g, 'and').replace(/"/g, '') + '">' + photoFrame(p) + '</button>' +
+                    plainText(p.cap) + '">' + photoFrame(p) + '</button>' +
                     '<figcaption>' + p.cap + '</figcaption>';
     grid.appendChild(fig);
   });
