@@ -34,13 +34,8 @@ Confirmed: store name (Mahakal Supermart), owner (Piyush), Bijoliya, Rajasthan, 
 Still to collect, each marked on the page itself as "to be added":
 
 - Store tour video for the hero (a dummy video is embedded for now)
-- Owner portrait for the testimonial section
-- A photograph of Piyush (for the owner testimonial section)
-- Owner's written testimonial and portrait photograph
-- Owner's video testimonial
-- Timeline: enquiry → site → agreement → fit-out → training → stocking → opening
-- Opening date, days to open, products stocked, team size, opening hours
-- Street address, store phone, map location
+- Owner's video testimonial (the dummy video stands in for now, in both the hero and the owner section)
+- Opening date, days to open, products stocked, team size
 - Investment breakdown by component, and whether ₹25 lakh includes rent, deposit and
   working capital
 
@@ -48,10 +43,13 @@ Nothing on the page is invented — every unconfirmed field says so.
 
 ## Working on it
 
-- **Store tour video:** the hero carries it. Change `data-video-id` on
+The store's exact street address, opening hours, phone number and map are deliberately not
+on the page: visits are arranged through the franchise team instead.
+
+- **Videos:** the hero carries a store tour and the owner section carries a testimonial. Change `data-video-id` on
   `<div class="hero-video">` to that store's YouTube id, and the poster image `src`
-  to `https://i.ytimg.com/vi/<id>/maxresdefault.jpg`. The player is click-to-load, so
-  YouTube is not contacted until a visitor presses play.
+  to `https://i.ytimg.com/vi/<id>/maxresdefault.jpg` — on each `<div class="hero-video">`.
+  Both players are click-to-load, so YouTube is not contacted until a visitor presses play.
 - **Photographs:** drop the files into `bijoliya-mahakal-supermart/img/` and list the
   filenames in the `PHOTOS` array near the bottom of the page. That is the only edit:
   ```js
