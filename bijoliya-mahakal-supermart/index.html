@@ -830,7 +830,7 @@ figure.wide .shot-btn .photo{aspect-ratio:8/5}
   });
 
   if (cats.length > 1) {
-    var buttons = [{key:'all', label:'All ' + PHOTOS.length + ' Photos'}].concat(
+    var buttons = [{key:'all', label:'All Photos'}].concat(
       cats.map(function(c){ return {key:c, label:CAT_LABELS[c] || titleCase(c)}; })
     );
     filterBar.innerHTML = buttons.map(function(b, i){
