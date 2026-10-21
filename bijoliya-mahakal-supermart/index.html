@@ -225,22 +225,10 @@ figure.wide .shot-btn .photo{aspect-ratio:8/5}
 @media(max-width:900px){.facts-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:480px){.facts-grid{grid-template-columns:1fr}}
 
-/* ---------- investment ---------- */
-.investment-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:40px;align-items:start}
-.table-wrap{overflow-x:auto;border:1px solid var(--border-color);border-radius:12px;background:var(--white)}
-table{border-collapse:collapse;width:100%;min-width:540px}
-th,td{padding:16px 20px;text-align:left;font-size:14.5px;border-bottom:1px solid var(--border-color)}
-th{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted-text);background:var(--off-white)}
-td:first-child{color:var(--dark-text);font-weight:500}
-td:nth-child(2){font-weight:700;color:var(--dark-text);white-space:nowrap}
-td:nth-child(3){color:var(--muted-text)}
-tbody tr:last-child td{border-bottom:none;background:var(--light-green)}
-tbody tr:last-child td:first-child,tbody tr:last-child td:nth-child(2){color:var(--dark-green);font-weight:700}
-tbody tr:last-child td:nth-child(3){color:var(--body-grey)}
+/* ---------- callout card ---------- */
 .disclaimer-card{background:var(--white);border:1px solid var(--border-color);border-left:4px solid var(--accent-yellow);border-radius:12px;padding:26px}
 .disclaimer-card h3{font-size:17px;margin-bottom:10px}
 .disclaimer-card .btn{margin-top:18px}
-@media(max-width:900px){.investment-grid{grid-template-columns:1fr;gap:30px}}
 
 /* ---------- support cards ---------- */
 .support-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -492,35 +480,6 @@ tbody tr:last-child td:nth-child(3){color:var(--body-grey)}
       <div class="fact-card"><span class="fact-icon"><svg viewBox="0 0 24 24"><path d="M4 8h16l-1.5 11H5.5z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span><div class="fact-value">Green</div><div class="fact-label">Store theme</div></div>
     </div>
     <p class="small-print" style="margin-top:24px">Figures reported by this franchise owner for this specific store. Investment, timelines and store performance differ by city, store size, rent and site conditions.</p>
-  </div>
-</section>
-
-<!-- ==================== INVESTMENT ==================== -->
-<section>
-  <div class="container">
-    <span class="eyebrow">Investment</span>
-    <h2 class="section-heading">What This Store Cost to Open</h2>
-    <p class="section-intro">The total is confirmed by the owner. A component-level breakdown makes this section far more useful to someone weighing the same decision.</p>
-    <div class="investment-grid">
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th scope="col">Component</th><th scope="col">Approx. Amount</th><th scope="col">What It Covered</th></tr></thead>
-          <tbody>
-            <tr><td>Franchise fee</td><td>To confirm</td><td>Brand rights, territory, launch support</td></tr>
-            <tr><td>Interiors &amp; fit-out</td><td>To confirm</td><td>Flooring, ceiling, lighting, signage, counters</td></tr>
-            <tr><td>Racking &amp; equipment</td><td>To confirm</td><td>Racks, chillers, freezer, POS hardware</td></tr>
-            <tr><td>Opening inventory</td><td>To confirm</td><td>First full stock across all categories</td></tr>
-            <tr><td>Branding &amp; launch</td><td>To confirm</td><td>Signage, launch campaign, opening offers</td></tr>
-            <tr><td>Total as reported</td><td>Approx. ₹25 lakh</td><td>Confirm whether this includes rent, deposit and working capital</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="disclaimer-card">
-        <h3>Read This as an Example, Not a Quotation</h3>
-        <p class="small-print">This is what this owner spent at this location. Costs at another site will differ with city, store size, rent, the civil condition of the space and local contractor rates. G Fresh Mart does not promise any level of sales, profit or recovery of investment.</p>
-        <a href="#franchise-enquiry" class="btn btn-secondary btn-small">Get an Estimate for Your City</a>
-      </div>
-    </div>
   </div>
 </section>
 
