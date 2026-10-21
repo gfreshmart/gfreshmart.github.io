@@ -63,8 +63,6 @@ on the page: visits are arranged through the franchise team instead.
   grid at double width and the rest are uniform, so any number of photographs fills its
   rows cleanly. Pre-existing category labels are in `CAT_LABELS`; a new category not listed
   there is title-cased from its own name.
-- **Draft markers:** the dashed panels use `class="pending"` and come out as content gets
-  filled in. The yellow draft bar and the breadcrumb were removed on request.
 - **Placeholder links:** header, breadcrumb and footer links are `href="#"` on purpose.
   They are structure for the template, to be pointed somewhere when the template is adopted.
 - **Enquiry form:** handled in JS with `preventDefault()` and shows a success state in place.
