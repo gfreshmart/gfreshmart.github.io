@@ -40,6 +40,7 @@
    Single light theme, as per the brand site.
    ================================================================ */
 *{margin:0;padding:0;box-sizing:border-box}
+[hidden]{display:none!important}
 
 :root{
   --primary-green:#2E7D32;
@@ -178,7 +179,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
 .filter-chip{background:var(--white);border:1px solid var(--border-color);color:var(--body-grey);border-radius:50px;padding:9px 20px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:500;cursor:pointer;transition:all .3s ease}
 .filter-chip:hover{border-color:var(--primary-green);color:var(--primary-green)}
 .filter-chip[aria-pressed="true"]{background:var(--primary-green);border-color:var(--primary-green);color:var(--white)}
-.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;grid-auto-flow:dense}
 .gallery-grid figure.wide{grid-column:span 2}
 .shot-btn{display:block;width:100%;border:none;padding:0;background:none;cursor:zoom-in;font:inherit;text-align:left}
 .shot-btn .photo{aspect-ratio:4/3;transition:box-shadow .3s ease,transform .3s ease}
@@ -524,15 +525,7 @@ tbody tr:last-child td:nth-child(3){color:var(--body-grey)}
     <span class="eyebrow">Inside the Store</span>
     <h2 class="section-heading">Photographs From Mahakal Supermart</h2>
     <p class="section-intro">Photographs from opening day at Mahakal Supermart. Click any image to view it larger.</p>
-    <div class="gallery-filters" role="group" aria-label="Filter photographs">
-      <button class="filter-chip" data-filter="all" aria-pressed="true">All 15 Photos</button>
-      <button class="filter-chip" data-filter="exterior" aria-pressed="false">Exterior</button>
-      <button class="filter-chip" data-filter="groceries" aria-pressed="false">Groceries &amp; Staples</button>
-      <button class="filter-chip" data-filter="household" aria-pressed="false">Household</button>
-      <button class="filter-chip" data-filter="checkout" aria-pressed="false">Checkout</button>
-      <button class="filter-chip" data-filter="interior" aria-pressed="false">Interior</button>
-      <button class="filter-chip" data-filter="team" aria-pressed="false">Team</button>
-    </div>
+    <div class="gallery-filters" id="galleryFilters" role="group" aria-label="Filter photographs"></div>
     <div class="gallery-grid" id="galleryGrid"></div>
   </div>
 </section>
@@ -919,64 +912,78 @@ tbody tr:last-child td:nth-child(3){color:var(--body-grey)}
     });
   });
 
-  /* ---------- gallery: one entry per photograph in the CMS ----------
-     Add  src:'img/<file>'  to any entry to show the real photograph in place of
-     the placeholder frame. Entries without a src keep the placeholder. */
+  /* ================= GALLERY =================
+     To add photographs: drop the files into img/ and list the filenames below.
+     That is the only edit needed — captions, layout and the category filters
+     all follow from this list.
+
+       'img/storefront.webp'                              a filename on its own
+       {src:'img/aisle.webp', cap:'Grocery aisle'}         with your own caption
+       {src:'img/aisle.webp', cat:'groceries'}             with a category
+
+     With no caption, one is read from the filename: 01-dals-and-pulses.webp
+     becomes "Dals and pulses". Categories are optional — the filter buttons
+     build themselves from whichever ones are used, and disappear if none are.
+     ============================================ */
   var PHOTOS = [
-    {cat:'exterior',  tag:'Exterior',    cap:'The G-Fresh fascia with Mahakal Supermart, on opening day', wide:true,
-     src:'img/01-storefront-opening-day.webp'},
-    {cat:'household', tag:'Home care',   cap:'Home care — detergents, cleaners and fabric care',
-     src:'img/02-home-care-aisle.webp'},
-    {cat:'interior',  tag:'Kitchenware', cap:'Kitchenware and storage at the front of the store',
-     src:'img/06-kitchenware-entrance.webp'},
-    {cat:'checkout',  tag:'Checkout',    cap:'The billing counter during the opening-day rush', wide:true,
-     src:'img/08-billing-counter.webp'},
-    {cat:'groceries', tag:'Staples',     cap:'Cooking oils, flours, besan and poha', wide:true,
-     src:'img/09-oils-and-staples.webp'},
-    {cat:'groceries', tag:'Dals',        cap:'Dals and pulses, weighed and packed in store', wide:true,
-     src:'img/11-dals-and-pulses.webp'},
-    {cat:'groceries', tag:'Spices',      cap:'Spices, masalas and ghee',
-     src:'img/04-spices-masala.webp'},
-    {cat:'groceries', tag:'Grains',      cap:'Rice, atta and sugar, with puja essentials alongside',
-     src:'img/03-rice-atta-sugar.webp'},
-    {cat:'groceries', tag:'Dry fruits',  cap:'Dry fruits, nuts, seeds and makhana',
-     src:'img/12-dry-fruits-nuts.webp'},
-    {cat:'groceries', tag:'Packaged',    cap:'Instant noodles, pasta and sauces',
-     src:'img/07-noodles-pasta-sauces.webp'},
-    {cat:'groceries', tag:'Tea',         cap:'Tea and beverages, beside the store\u2019s category board',
-     src:'img/10-tea-and-beverages.webp'},
-    {cat:'household', tag:'Personal care',cap:'Soaps, shampoo and daily personal care',
-     src:'img/13-soaps-personal-care.webp'},
-    {cat:'groceries', tag:'Snacks',      cap:'Snacks aisle, busy through opening day', wide:true,
-     src:'img/05-snacks-aisle.webp'},
-    {cat:'household', tag:'Baby care',   cap:'Baby care and hygiene',
-     src:'img/14-baby-care-hygiene.webp'},
-    {cat:'interior',  tag:'Stationery',  cap:'Stationery and general merchandise near the entrance',
-     src:'img/15-stationery-merchandise.webp'},
-    {cat:'team',      tag:'Team',        cap:'Piyush and the store team'}
+    {src:'img/01-storefront-opening-day.webp', cat:'exterior',  cap:'The G-Fresh fascia with Mahakal Supermart, on opening day'},
+    {src:'img/02-home-care-aisle.webp',        cat:'household', cap:'Home care — detergents, cleaners and fabric care'},
+    {src:'img/06-kitchenware-entrance.webp',   cat:'interior',  cap:'Kitchenware and storage at the front of the store'},
+    {src:'img/08-billing-counter.webp',        cat:'checkout',  cap:'The billing counter during the opening-day rush'},
+    {src:'img/09-oils-and-staples.webp',       cat:'groceries', cap:'Cooking oils, flours, besan and poha'},
+    {src:'img/11-dals-and-pulses.webp',        cat:'groceries', cap:'Dals and pulses, weighed and packed in store'},
+    {src:'img/04-spices-masala.webp',          cat:'groceries', cap:'Spices, masalas and ghee'},
+    {src:'img/03-rice-atta-sugar.webp',        cat:'groceries', cap:'Rice, atta and sugar, with puja essentials alongside'},
+    {src:'img/12-dry-fruits-nuts.webp',        cat:'groceries', cap:'Dry fruits, nuts, seeds and makhana'},
+    {src:'img/07-noodles-pasta-sauces.webp',   cat:'groceries', cap:'Instant noodles, pasta and sauces'},
+    {src:'img/10-tea-and-beverages.webp',      cat:'groceries', cap:'Tea and beverages, beside the store\u2019s category board'},
+    {src:'img/13-soaps-personal-care.webp',    cat:'household', cap:'Soaps, shampoo and daily personal care'},
+    {src:'img/05-snacks-aisle.webp',           cat:'groceries', cap:'Snacks aisle, busy through opening day'},
+    {src:'img/14-baby-care-hygiene.webp',      cat:'household', cap:'Baby care and hygiene'},
+    {src:'img/15-stationery-merchandise.webp', cat:'interior',  cap:'Stationery and general merchandise near the entrance'}
   ];
 
-  var CAM_ICON = '<svg viewBox="0 0 24 24"><path d="M3 7h4l2-2h6l2 2h4v12H3z"/><circle cx="12" cy="13" r="3.4"/></svg>';
+  /* Names shown on the filter buttons. A category with no entry here is
+     title-cased from its own name, so new categories need nothing added. */
+  var CAT_LABELS = {
+    exterior:'Exterior', interior:'Interior', groceries:'Groceries & Staples',
+    household:'Household', checkout:'Checkout', team:'Team', fresh:'Fresh Produce'
+  };
+
   var grid = document.getElementById('galleryGrid');
 
-  function photoFrame(p){
-    /* With a src, render the real photograph; without one, show the placeholder frame. */
-    if (p.src) {
-      return '<div class="photo has-img"><img class="photo-img" src="' + p.src +
-             '" alt="' + plainText(p.cap) + '" loading="lazy" decoding="async"></div>';
-    }
-    return '<div class="photo"><div class="photo-inner"><div class="photo-icon">' + CAM_ICON + '</div>' +
-           '<p class="photo-tag">' + p.tag + '</p><p class="photo-note">' + p.cap + '</p></div></div>';
+  function titleCase(text){
+    return text.charAt(0).toUpperCase() + text.slice(1);
+  }
+
+  /* "img/01-dals-and-pulses.webp" -> "Dals and pulses" */
+  function captionFromFile(src){
+    var base = src.split('/').pop().replace(/\.[a-z0-9]+$/i, '');
+    return titleCase(base.replace(/^[0-9]+[-_]*/, '').replace(/[-_]+/g, ' ').trim());
   }
 
   function plainText(html){
     return html.replace(/&amp;/g, 'and').replace(/<[^>]*>/g, '').replace(/"/g, '');
   }
 
+  /* Accept a bare filename or an object, and fill in whatever was left out. */
+  PHOTOS = PHOTOS.map(function(entry){
+    var p = (typeof entry === 'string') ? {src: entry} : entry;
+    if (!p.cap) p.cap = captionFromFile(p.src);
+    return p;
+  });
+
+  function photoFrame(p){
+    return '<div class="photo has-img"><img class="photo-img" src="' + p.src +
+           '" alt="' + plainText(p.cap) + '" loading="lazy" decoding="async"></div>';
+  }
+
   PHOTOS.forEach(function(p, i){
     var fig = document.createElement('figure');
-    if (p.wide) fig.className = 'wide';
-    fig.setAttribute('data-cat', p.cat);
+    /* the opening image leads the grid at double width; the rest are uniform,
+       so any number of photographs still fills its rows cleanly */
+    if (i === 0) fig.className = 'wide';
+    if (p.cat) fig.setAttribute('data-cat', p.cat);
     fig.innerHTML = '<button class="shot-btn" type="button" data-index="' + i + '" aria-label="Open photo: ' +
                     plainText(p.cap) + '">' + photoFrame(p) + '</button>' +
                     '<figcaption>' + p.cap + '</figcaption>';
@@ -985,18 +992,36 @@ tbody tr:last-child td:nth-child(3){color:var(--body-grey)}
 
   var figures = grid.querySelectorAll('figure');
 
-  /* ---------- gallery filters ---------- */
-  var chips = document.querySelectorAll('.filter-chip');
-  chips.forEach(function(chip){
-    chip.addEventListener('click', function(){
-      chips.forEach(function(c){ c.setAttribute('aria-pressed','false'); });
-      chip.setAttribute('aria-pressed','true');
+  /* ---------- filters, built from the categories actually in use ---------- */
+  var filterBar = document.getElementById('galleryFilters');
+  var cats = [];
+  PHOTOS.forEach(function(p){
+    if (p.cat && cats.indexOf(p.cat) === -1) cats.push(p.cat);
+  });
+
+  if (cats.length > 1) {
+    var buttons = [{key:'all', label:'All ' + PHOTOS.length + ' Photos'}].concat(
+      cats.map(function(c){ return {key:c, label:CAT_LABELS[c] || titleCase(c)}; })
+    );
+    filterBar.innerHTML = buttons.map(function(b, i){
+      return '<button class="filter-chip" type="button" data-filter="' + b.key +
+             '" aria-pressed="' + (i === 0) + '">' + b.label + '</button>';
+    }).join('');
+
+    filterBar.addEventListener('click', function(e){
+      var chip = e.target.closest('.filter-chip');
+      if (!chip) return;
+      filterBar.querySelectorAll('.filter-chip').forEach(function(c){
+        c.setAttribute('aria-pressed', String(c === chip));
+      });
       var f = chip.getAttribute('data-filter');
       figures.forEach(function(fig){
         fig.hidden = !(f === 'all' || fig.getAttribute('data-cat') === f);
       });
     });
-  });
+  } else {
+    filterBar.hidden = true;
+  }
 
   /* ---------- lightbox ---------- */
   var box = null, current = 0, lastFocus = null;

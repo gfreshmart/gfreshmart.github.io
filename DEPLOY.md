@@ -35,7 +35,7 @@ Still to collect, each marked on the page itself as "to be added":
 
 - Store tour video for the hero (a dummy video is embedded for now)
 - Owner portrait for the testimonial section
-- A photograph of Piyush and the store team (the last empty gallery slot)
+- A photograph of Piyush (for the owner testimonial section)
 - Owner's written testimonial and portrait photograph
 - Owner's video testimonial
 - Timeline: enquiry → site → agreement → fit-out → training → stocking → opening
@@ -52,9 +52,19 @@ Nothing on the page is invented — every unconfirmed field says so.
   `<div class="hero-video">` to that store's YouTube id, and the poster image `src`
   to `https://i.ytimg.com/vi/<id>/maxresdefault.jpg`. The player is click-to-load, so
   YouTube is not contacted until a visitor presses play.
-- **Photographs:** each entry in the `PHOTOS` array near the bottom of the file takes
-  `src:'img/<file>'`. With a `src` it renders the real photograph; without one it keeps
-  the placeholder frame, so photos can be added a few at a time.
+- **Photographs:** drop the files into `bijoliya-mahakal-supermart/img/` and list the
+  filenames in the `PHOTOS` array near the bottom of the page. That is the only edit:
+  ```js
+  'img/storefront.webp'                             // filename on its own
+  {src:'img/aisle.webp', cap:'Grocery aisle'}       // with your own caption
+  {src:'img/aisle.webp', cat:'groceries'}           // with a category
+  ```
+  With no caption, one is read from the filename (`01-dals-and-pulses.webp` becomes
+  "Dals and pulses"). Categories are optional: the filter buttons build themselves from
+  whichever categories are used and disappear if none are. The first photograph leads the
+  grid at double width and the rest are uniform, so any number of photographs fills its
+  rows cleanly. Pre-existing category labels are in `CAT_LABELS`; a new category not listed
+  there is title-cased from its own name.
 - **Draft markers:** the dashed panels use `class="pending"` and come out as content gets
   filled in. The yellow draft bar and the breadcrumb were removed on request.
 - **Placeholder links:** header, breadcrumb and footer links are `href="#"` on purpose.
