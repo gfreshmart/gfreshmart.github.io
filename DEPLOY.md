@@ -34,7 +34,8 @@ Confirmed: store name (Mahakal Supermart), owner (Piyush), Bijoliya, Rajasthan, 
 Still to collect, each marked on the page itself as "to be added":
 
 - Store tour video for the hero (a dummy video is embedded for now)
-- Store photographs (8 gallery slots; captions already written)
+- Owner portrait for the testimonial section
+- A photograph of Piyush and the store team (the last empty gallery slot)
 - Owner's written testimonial and portrait photograph
 - Owner's video testimonial
 - Timeline: enquiry → site → agreement → fit-out → training → stocking → opening

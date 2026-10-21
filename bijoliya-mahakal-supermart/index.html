@@ -525,7 +525,7 @@ tbody tr:last-child td:nth-child(3){color:var(--body-grey)}
     <h2 class="section-heading">Photographs From Mahakal Supermart</h2>
     <p class="section-intro">Photographs from opening day at Mahakal Supermart. Click any image to view it larger.</p>
     <div class="gallery-filters" role="group" aria-label="Filter photographs">
-      <button class="filter-chip" data-filter="all" aria-pressed="true">All Photos</button>
+      <button class="filter-chip" data-filter="all" aria-pressed="true">All 15 Photos</button>
       <button class="filter-chip" data-filter="exterior" aria-pressed="false">Exterior</button>
       <button class="filter-chip" data-filter="groceries" aria-pressed="false">Groceries &amp; Staples</button>
       <button class="filter-chip" data-filter="household" aria-pressed="false">Household</button>
@@ -923,27 +923,37 @@ tbody tr:last-child td:nth-child(3){color:var(--body-grey)}
      Add  src:'img/<file>'  to any entry to show the real photograph in place of
      the placeholder frame. Entries without a src keep the placeholder. */
   var PHOTOS = [
-    {cat:'exterior',  tag:'Exterior',   cap:'The G-Fresh fascia with Mahakal Supermart, on opening day', wide:true,
+    {cat:'exterior',  tag:'Exterior',    cap:'The G-Fresh fascia with Mahakal Supermart, on opening day', wide:true,
      src:'img/01-storefront-opening-day.webp'},
-    {cat:'household', tag:'Home care',  cap:'Home care — detergents, cleaners and fabric care',
+    {cat:'household', tag:'Home care',   cap:'Home care — detergents, cleaners and fabric care',
      src:'img/02-home-care-aisle.webp'},
-    {cat:'interior',  tag:'Kitchenware',cap:'Kitchenware and storage at the front of the store',
+    {cat:'interior',  tag:'Kitchenware', cap:'Kitchenware and storage at the front of the store',
      src:'img/06-kitchenware-entrance.webp'},
-    {cat:'checkout',  tag:'Checkout',   cap:'The billing counter during the opening-day rush', wide:true,
+    {cat:'checkout',  tag:'Checkout',    cap:'The billing counter during the opening-day rush', wide:true,
      src:'img/08-billing-counter.webp'},
-    {cat:'groceries', tag:'Staples',    cap:'Cooking oils, flours, besan and poha', wide:true,
+    {cat:'groceries', tag:'Staples',     cap:'Cooking oils, flours, besan and poha', wide:true,
      src:'img/09-oils-and-staples.webp'},
-    {cat:'groceries', tag:'Spices',     cap:'Spices, masalas and ghee',
+    {cat:'groceries', tag:'Dals',        cap:'Dals and pulses, weighed and packed in store', wide:true,
+     src:'img/11-dals-and-pulses.webp'},
+    {cat:'groceries', tag:'Spices',      cap:'Spices, masalas and ghee',
      src:'img/04-spices-masala.webp'},
-    {cat:'groceries', tag:'Grains',     cap:'Rice, atta and sugar, with puja essentials alongside',
+    {cat:'groceries', tag:'Grains',      cap:'Rice, atta and sugar, with puja essentials alongside',
      src:'img/03-rice-atta-sugar.webp'},
-    {cat:'groceries', tag:'Packaged',   cap:'Instant noodles, pasta and sauces',
+    {cat:'groceries', tag:'Dry fruits',  cap:'Dry fruits, nuts, seeds and makhana',
+     src:'img/12-dry-fruits-nuts.webp'},
+    {cat:'groceries', tag:'Packaged',    cap:'Instant noodles, pasta and sauces',
      src:'img/07-noodles-pasta-sauces.webp'},
-    {cat:'groceries', tag:'Tea',        cap:'Tea and beverages, beside the store\u2019s category board',
+    {cat:'groceries', tag:'Tea',         cap:'Tea and beverages, beside the store\u2019s category board',
      src:'img/10-tea-and-beverages.webp'},
-    {cat:'groceries', tag:'Snacks',     cap:'Snacks aisle, busy through opening day', wide:true,
+    {cat:'household', tag:'Personal care',cap:'Soaps, shampoo and daily personal care',
+     src:'img/13-soaps-personal-care.webp'},
+    {cat:'groceries', tag:'Snacks',      cap:'Snacks aisle, busy through opening day', wide:true,
      src:'img/05-snacks-aisle.webp'},
-    {cat:'team',      tag:'Team',       cap:'Piyush and the store team'}
+    {cat:'household', tag:'Baby care',   cap:'Baby care and hygiene',
+     src:'img/14-baby-care-hygiene.webp'},
+    {cat:'interior',  tag:'Stationery',  cap:'Stationery and general merchandise near the entrance',
+     src:'img/15-stationery-merchandise.webp'},
+    {cat:'team',      tag:'Team',        cap:'Piyush and the store team'}
   ];
 
   var CAM_ICON = '<svg viewBox="0 0 24 24"><path d="M3 7h4l2-2h6l2 2h4v12H3z"/><circle cx="12" cy="13" r="3.4"/></svg>';
