@@ -1,72 +1,55 @@
-# Deployment notes
+# Mahakal Supermart — store page template (development)
 
-## Live preview (GitHub Pages)
+A standalone store profile page, built as the template for G Fresh Mart store pages.
+Nothing here is wired to the live site: there are no links, canonical tags, schema URLs
+or asset references pointing at a production domain. The only external request the page
+makes is to Google Fonts for Poppins.
 
-Served from the `claude/laughing-lovelace-8pys06` branch:
+## Live preview
 
-- **Mahakal Supermart, Bijoliya** — the working store page template:
-  https://gfreshmart.github.io/store-page/bijoliya-mahakal-supermart/
-- Repo root (existing careers page):
-  https://gfreshmart.github.io/store-page/
+https://gfreshmart.github.io/bijoliya-mahakal-supermart/
 
-This is a **preview/staging deploy**, not the official site. Once this page is finished it
-becomes the template every other store page is generated from.
+Served by GitHub Pages from the `claude/laughing-lovelace-8pys06` branch of
+`gfreshmart/gfreshmart.github.io`, root folder.
 
-### Before moving this page to www.gfreshmart.com
+The page carries `<meta name="robots" content="noindex, nofollow">` so a work-in-progress
+template does not get indexed.
 
-1. In `bijoliya-mahakal-supermart/index.html`, change the robots meta back
-   to `<meta name="robots" content="index, follow">` and delete the preview comment above it.
-   It is set to `noindex, nofollow` so the GitHub Pages copy does not compete with
-   gfreshmart.com in search results.
-2. Delete the yellow "Draft page" bar (one `<div class="draft-bar">` below the header).
-3. Replace the photo placeholders with real store photographs. Each gallery entry in the
-   `PHOTOS` array takes `src:'img/<file>'`; entries without a `src` keep the placeholder.
-4. Replace the video facade with the real YouTube/Vimeo embed, and the map placeholder with
-   the Google Maps iframe.
-5. Point the enquiry form at the CRM endpoint. The hidden `source_store` field carries
-   `store_bijoliya_mahakal_supermart` for lead attribution.
-6. The `canonical`, Open Graph and JSON-LD URLs already point at
-   `https://www.gfreshmart.com/bijoliya-mahakal-supermart` — no change needed.
+## Files
 
-The two logo files load from `gfreshmart.com/static-assets/images/`. If that host blocks
-hotlinking from github.io, the page falls back to a styled "G-Fresh Mart" wordmark
-automatically; on gfreshmart.com itself the real logos load.
+| Path | What it is |
+|---|---|
+| `bijoliya-mahakal-supermart/index.html` | The store page. All CSS and JS are inline — one self-contained file. |
+| `bijoliya-mahakal-supermart/img/` | Store photographs go here. |
+| `index.html` | An unrelated careers page that was already in the repo. Serves at the site root. |
+| `franchise-store-page-structure.md` | The section-by-section spec this page was built from. |
 
-## Mahakal Supermart, Bijoliya — content still to collect
+## Store data on the page
 
-Confirmed: store name (Mahakal Supermart), owner (Piyush), city/state/pincode
-(Bijoliya, Rajasthan, 311602), 1,100 sq ft, approx. ₹25 lakh total investment,
-green store theme.
+Confirmed: store name (Mahakal Supermart), owner (Piyush), Bijoliya, Rajasthan, 311602,
+1,100 sq ft, approx. ₹25 lakh total investment, green store theme.
 
-Outstanding, each marked on the page itself:
+Still to collect, each marked on the page itself as "to be added":
 
-- Store photographs (8 slots; captions already written)
+- Store photographs (8 gallery slots; captions already written)
 - Owner's written testimonial and portrait photograph
 - Owner's video testimonial
 - Timeline: enquiry → site → agreement → fit-out → training → stocking → opening
 - Opening date, days to open, products stocked, team size, opening hours
-- Street address, store phone, Google Maps link
+- Street address, store phone, map location
 - Investment breakdown by component, and whether ₹25 lakh includes rent, deposit and
   working capital
 
-Nothing on this page is invented — every unconfirmed field says "to be added".
+Nothing on the page is invented — every unconfirmed field says so.
 
-## Removing `store-page` from the URL
+## Working on it
 
-`store-page` is the repository name, and GitHub puts the repo name in the path of every
-project Pages site — it cannot be removed by changing files. Two ways to drop it:
-
-1. **Rename the repo to `gfreshmart.github.io`.** GitHub then serves it as a user site at
-   the domain root, so the page becomes
-   `https://gfreshmart.github.io/bijoliya-mahakal-supermart/`.
-   Settings → General → Repository name. Pages has to be pointed at the branch again
-   afterwards, and the old `/store-page/...` URLs stop working.
-2. **Add a custom domain** (Settings → Pages → Custom domain), e.g. a staging subdomain,
-   which serves the page at `https://<domain>/bijoliya-mahakal-supermart/`.
-
-## History
-
-A template demo page for a fictional store (Vijay Nagar, Indore) was removed on
-2026-10-21 now that a real store page exists. It is still in git history if the
-fictional-content version is ever needed for reference:
-`git show 09bfb76:franchise-stores/indore-vijay-nagar/index.html`
+- **Photographs:** each entry in the `PHOTOS` array near the bottom of the file takes
+  `src:'img/<file>'`. With a `src` it renders the real photograph; without one it keeps
+  the placeholder frame, so photos can be added a few at a time.
+- **Draft markers:** the yellow bar below the header is one `<div class="draft-bar">`, and
+  the dashed panels use `class="pending"`. Both come out as content gets filled in.
+- **Placeholder links:** header, breadcrumb and footer links are `href="#"` on purpose.
+  They are structure for the template, to be pointed somewhere when the template is adopted.
+- **Enquiry form:** handled in JS with `preventDefault()` and shows a success state in place.
+  The hidden `source_store` field carries `store_bijoliya_mahakal_supermart`.
