@@ -493,11 +493,11 @@ tbody tr:last-child td:nth-child(3){color:var(--body-grey)}
         <span class="eyebrow">About This Store</span>
         <h2 class="section-heading">A G Fresh Mart Store in Bijoliya, Bhilwara District</h2>
         <p>Mahakal Supermart is a G Fresh Mart franchise store in Bijoliya, Rajasthan, run by franchise owner Piyush. The store covers 1,100 sq ft and was set up with a total investment of approximately ₹25 lakh, built to the brand's green store theme.</p>
-        <p>At this size the store works as a daily-needs format: groceries, packaged foods, personal care and household essentials for customers shopping two or three times a week rather than once a month.</p>
+        <p>The store's own category board lists groceries, grains, dairy, supplies, kitchenware, frozen food, toiletries and kids' snacks. In practice that means a full daily-needs shop: atta, rice and sugar, loose dals, cooking oils, spices and masalas, tea, snacks, home care and personal care, with kitchenware and general merchandise along the front.</p>
         <div class="confirm-card">
           <h3>Still to add for this section</h3>
           <ul>
-            <li>What the store stocks, and roughly how many products</li>
+            <li>Roughly how many products the store carries</li>
             <li>Who shops there — the surrounding area and customer mix</li>
             <li>How many people work in the store</li>
             <li>Anything distinctive about the site: frontage, parking, floor level</li>
@@ -523,13 +523,14 @@ tbody tr:last-child td:nth-child(3){color:var(--body-grey)}
   <div class="container">
     <span class="eyebrow">Inside the Store</span>
     <h2 class="section-heading">Photographs From Mahakal Supermart</h2>
-    <p class="section-intro">Each frame below marks a photograph to add. Replace them with the real shots and the captions stay as they are.</p>
+    <p class="section-intro">Photographs from the store. The dashed frames mark shots still to come.</p>
     <div class="gallery-filters" role="group" aria-label="Filter photographs">
       <button class="filter-chip" data-filter="all" aria-pressed="true">All Photos</button>
       <button class="filter-chip" data-filter="exterior" aria-pressed="false">Exterior</button>
-      <button class="filter-chip" data-filter="interior" aria-pressed="false">Interior</button>
-      <button class="filter-chip" data-filter="aisles" aria-pressed="false">Aisles &amp; Products</button>
+      <button class="filter-chip" data-filter="groceries" aria-pressed="false">Groceries &amp; Staples</button>
+      <button class="filter-chip" data-filter="household" aria-pressed="false">Household</button>
       <button class="filter-chip" data-filter="checkout" aria-pressed="false">Checkout</button>
+      <button class="filter-chip" data-filter="interior" aria-pressed="false">Store Interior</button>
       <button class="filter-chip" data-filter="team" aria-pressed="false">Team</button>
     </div>
     <div class="gallery-grid" id="galleryGrid"></div>
@@ -922,14 +923,19 @@ tbody tr:last-child td:nth-child(3){color:var(--body-grey)}
      Add  src:'img/<file>'  to any entry to show the real photograph in place of
      the placeholder frame. Entries without a src keep the placeholder. */
   var PHOTOS = [
-    {cat:'exterior', tag:'Exterior', cap:'Storefront and signage, shot in daylight', wide:true},
-    {cat:'interior', tag:'Interior', cap:'Wide view of the store floor from the back wall'},
-    {cat:'aisles',   tag:'Aisles',   cap:'Grocery aisle, showing racking and aisle width'},
-    {cat:'aisles',   tag:'Products', cap:'Packaged foods and staples section', wide:true},
-    {cat:'aisles',   tag:'Personal care', cap:'Personal care and household section'},
-    {cat:'checkout', tag:'Checkout', cap:'Billing counter during trading hours'},
-    {cat:'interior', tag:'Entrance', cap:'Entrance seen from inside the store'},
-    {cat:'team',     tag:'Team',     cap:'Piyush and the store team', wide:true}
+    {cat:'exterior',  tag:'Exterior',  cap:'The G-Fresh fascia with Mahakal Supermart, on opening day', wide:true,
+     src:'img/01-storefront-opening-day.webp'},
+    {cat:'groceries', tag:'Snacks',    cap:'Snacks aisle, busy through opening day', wide:true,
+     src:'img/05-snacks-aisle.webp'},
+    {cat:'household', tag:'Home care', cap:'Home care — detergents, cleaners and fabric care',
+     src:'img/02-home-care-aisle.webp'},
+    {cat:'groceries', tag:'Staples',   cap:'Rice, atta and sugar, with puja essentials alongside',
+     src:'img/03-rice-atta-sugar.webp'},
+    {cat:'groceries', tag:'Spices',    cap:'Spices, masalas and ghee',
+     src:'img/04-spices-masala.webp'},
+    {cat:'checkout',  tag:'Checkout',  cap:'Billing counter during trading hours'},
+    {cat:'interior',  tag:'Interior',  cap:'Wide view of the store floor from the back wall'},
+    {cat:'team',      tag:'Team',      cap:'Piyush and the store team'}
   ];
 
   var CAM_ICON = '<svg viewBox="0 0 24 24"><path d="M3 7h4l2-2h6l2 2h4v12H3z"/><circle cx="12" cy="13" r="3.4"/></svg>';
