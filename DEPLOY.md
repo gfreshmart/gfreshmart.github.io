@@ -33,6 +33,7 @@ Confirmed: store name (Mahakal Supermart), owner (Piyush), Bijoliya, Rajasthan, 
 
 Still to collect, each marked on the page itself as "to be added":
 
+- Store tour video for the hero (a dummy video is embedded for now)
 - Store photographs (8 gallery slots; captions already written)
 - Owner's written testimonial and portrait photograph
 - Owner's video testimonial
@@ -46,6 +47,10 @@ Nothing on the page is invented — every unconfirmed field says so.
 
 ## Working on it
 
+- **Store tour video:** the hero carries it. Change `data-video-id` on
+  `<div class="hero-video">` to that store's YouTube id, and the poster image `src`
+  to `https://i.ytimg.com/vi/<id>/maxresdefault.jpg`. The player is click-to-load, so
+  YouTube is not contacted until a visitor presses play.
 - **Photographs:** each entry in the `PHOTOS` array near the bottom of the file takes
   `src:'img/<file>'`. With a `src` it renders the real photograph; without one it keeps
   the placeholder frame, so photos can be added a few at a time.

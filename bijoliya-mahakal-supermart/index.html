@@ -144,6 +144,14 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
 .photo-tag{font-size:11.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--primary-green)}
 .photo-note{font-size:13px;line-height:1.55;color:var(--muted-text);margin-top:6px}
 .hero-media .photo{aspect-ratio:4/3;box-shadow:var(--card-shadow)}
+.hero-video{position:relative;width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid var(--border-color);box-shadow:var(--card-shadow);background:linear-gradient(135deg,#24382A 0%,#16231A 100%)}
+.hero-video-poster{width:100%;height:100%;object-fit:cover}
+.hero-video .video-trigger{position:absolute;inset:0;width:100%;height:100%;border:none;background:rgba(0,0,0,.18);cursor:pointer;display:grid;place-items:center;transition:background .3s ease}
+.hero-video .video-trigger:hover{background:rgba(0,0,0,.3)}
+.hero-video .play-button{box-shadow:0 0 0 12px rgba(46,125,50,.28)}
+.hero-video .video-trigger:hover .play-button{transform:scale(1.07)}
+.hero-video-label{position:absolute;left:12px;bottom:12px;background:rgba(0,0,0,.6);color:var(--white);font-size:12px;font-weight:500;padding:5px 12px;border-radius:50px;pointer-events:none}
+.hero-video iframe{width:100%;height:100%;border:0;display:block}
 .photo.has-img{padding:0;background:none}
 .photo-img{width:100%;height:100%;object-fit:cover;display:block}
 
@@ -453,12 +461,14 @@ tbody tr:last-child td:nth-child(3){color:var(--body-grey)}
       </div>
     </div>
     <div class="hero-media">
-      <div class="photo">
-        <div class="photo-inner">
-          <div class="photo-icon"><svg viewBox="0 0 24 24"><path d="M3 9.5 12 4l9 5.5V20H3z"/><path d="M3 10h18"/><path d="M8 20v-6h8v6"/></svg></div>
-          <p class="photo-tag">Hero Photo · Exterior</p>
-          <p class="photo-note">Storefront with signage, shot in daylight — 3:2 crop, around 1600px wide</p>
-        </div>
+      <!-- Store tour video. Per store, change data-video-id to that store's YouTube id. -->
+      <div class="hero-video" data-video-id="mqlywnQU9cU" data-video-title="Store tour — Mahakal Supermart, Bijoliya">
+        <img class="hero-video-poster" src="https://i.ytimg.com/vi/mqlywnQU9cU/maxresdefault.jpg" alt=""
+             onerror="this.style.display='none'">
+        <button class="video-trigger" type="button" aria-label="Play the store tour video">
+          <span class="play-button" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+        </button>
+        <span class="hero-video-label">Store tour · Mahakal Supermart</span>
       </div>
     </div>
   </div>
@@ -1025,13 +1035,20 @@ tbody tr:last-child td:nth-child(3){color:var(--body-grey)}
     if (btn) openBox(parseInt(btn.getAttribute('data-index'), 10));
   });
 
-  /* ---------- video facade: wired up once the owner's video exists ---------- */
-  var videoPlayer = document.getElementById('videoPlayer');
-  if (videoPlayer) {
-    videoPlayer.addEventListener('click', function(){
-      /* production: inject the YouTube/Vimeo iframe here */
+  /* ---------- click-to-load video: keeps YouTube off the page until asked ---------- */
+  document.querySelectorAll('[data-video-id]').forEach(function(box){
+    box.addEventListener('click', function(){
+      var id = box.getAttribute('data-video-id');
+      if (!id || box.querySelector('iframe')) return;
+      var frame = document.createElement('iframe');
+      frame.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
+      frame.title = box.getAttribute('data-video-title') || 'Store video';
+      frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      frame.allowFullscreen = true;
+      box.innerHTML = '';
+      box.appendChild(frame);
     });
-  }
+  });
 
   /* ---------- franchise enquiry form ---------- */
   var form = document.getElementById('franchiseForm'),
