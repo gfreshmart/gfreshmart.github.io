@@ -1,9 +1,11 @@
 # Mahakal Supermart — store page template (development)
 
 A standalone store profile page, built as the template for G Fresh Mart store pages.
-Nothing here is wired to the live site: there are no links, canonical tags, schema URLs
-or asset references pointing at a production domain. The only external request the page
-makes is to Google Fonts for Poppins.
+Nothing here is wired to the live site: no links, canonical tags or schema URLs pointing at
+a production domain. The two exceptions are both asset loads, not site links: Google Fonts
+for Poppins, and the official G Fresh Mart logo files. Attach the logo files to the repo
+under `bijoliya-mahakal-supermart/img/` to remove the last external reference — the page
+already falls back to a text wordmark if they fail to load.
 
 ## Live preview
 
@@ -47,8 +49,8 @@ Nothing on the page is invented — every unconfirmed field says so.
 - **Photographs:** each entry in the `PHOTOS` array near the bottom of the file takes
   `src:'img/<file>'`. With a `src` it renders the real photograph; without one it keeps
   the placeholder frame, so photos can be added a few at a time.
-- **Draft markers:** the yellow bar below the header is one `<div class="draft-bar">`, and
-  the dashed panels use `class="pending"`. Both come out as content gets filled in.
+- **Draft markers:** the dashed panels use `class="pending"` and come out as content gets
+  filled in. The yellow draft bar and the breadcrumb were removed on request.
 - **Placeholder links:** header, breadcrumb and footer links are `href="#"` on purpose.
   They are structure for the template, to be pointed somewhere when the template is adopted.
 - **Enquiry form:** handled in JS with `preventDefault()` and shows a success state in place.

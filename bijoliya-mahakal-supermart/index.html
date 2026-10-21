@@ -65,7 +65,7 @@ body{
 }
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
-ul{list-style:none}
+ul,ol{list-style:none}
 h1,h2,h3,h4{color:var(--dark-text);text-wrap:balance}
 h1{font-size:52px;font-weight:700;line-height:1.2}
 h2{font-size:38px;font-weight:700;line-height:1.25}
@@ -100,7 +100,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
 .navbar.scrolled{box-shadow:0 4px 20px rgba(0,0,0,.08)}
 .nav-inner{max-width:1200px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .nav-logo img{height:44px;width:auto}
-.logo-fallback{display:block;font-size:22px;font-weight:800;color:var(--primary-green);letter-spacing:-.5px;line-height:44px}
+.logo-fallback{display:none;font-size:22px;font-weight:800;color:var(--primary-green);letter-spacing:-.5px;line-height:44px}
 .logo-fallback .yellow{color:var(--accent-yellow-dark)}
 .nav-right{display:flex;align-items:center;gap:28px}
 .nav-links{display:flex;align-items:center;gap:28px}
@@ -118,11 +118,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
 .mobile-nav .btn{margin-top:16px;display:block}
 @media(max-width:992px){.nav-links,.nav-cta{display:none}.hamburger{display:block}}
 
-/* ---------- breadcrumb ---------- */
-.breadcrumb{background:var(--off-white);border-bottom:1px solid var(--border-color)}
-.breadcrumb ol{max-width:1200px;margin:0 auto;padding:12px 20px;display:flex;flex-wrap:wrap;gap:6px;font-size:13px;color:var(--muted-text)}
-.breadcrumb a:hover{color:var(--primary-green)}
-.breadcrumb li+li::before{content:"›";margin-right:6px;color:var(--border-color)}
 
 /* ---------- hero ---------- */
 .store-hero{padding:56px 0 64px}
@@ -395,7 +390,6 @@ tbody tr:last-child td:nth-child(3){color:var(--body-grey)}
 
 <style>
 /* ---- additions for a store page whose content is still being collected ---- */
-.draft-bar{background:var(--accent-yellow);color:var(--dark-text);font-size:13.5px;font-weight:600;text-align:center;padding:10px 20px;line-height:1.5}
 .pending{border:1.5px dashed var(--border-color);border-radius:12px;background:var(--off-white);padding:32px 28px;text-align:center}
 .pending-label{display:inline-block;background:var(--white);border:1px solid var(--border-color);border-radius:50px;padding:5px 14px;font-size:11.5px;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;color:var(--muted-text);margin-bottom:14px}
 .pending h3{font-size:18px;margin-bottom:8px}
@@ -413,7 +407,9 @@ tbody tr:last-child td:nth-child(3){color:var(--body-grey)}
 <header class="navbar" id="navbar">
   <div class="nav-inner">
     <a href="#" class="nav-logo" aria-label="G Fresh Mart Home">
-            <span class="logo-fallback">G-Fresh <span class="yellow">Mart</span></span>
+            <img src="https://gfreshmart.com/static-assets/images/gfresh-logo.webp" alt="G Fresh Mart Logo" height="44" width="120"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <span class="logo-fallback">G-Fresh <span class="yellow">Mart</span></span>
     </a>
     <div class="nav-right">
       <nav class="nav-links" aria-label="Main navigation">
@@ -438,19 +434,6 @@ tbody tr:last-child td:nth-child(3){color:var(--body-grey)}
     <a href="#franchise-enquiry" class="btn btn-primary btn-small">Apply Franchise</a>
   </nav>
 </header>
-
-<!-- DRAFT NOTICE — remove this one div when the content is complete -->
-<div class="draft-bar">Draft page · Photographs, store timeline and the owner's testimonial are still to be added</div>
-
-<!-- ==================== BREADCRUMB ==================== -->
-<nav class="breadcrumb" aria-label="Breadcrumb">
-  <ol>
-    <li><a href="#">Home</a></li>
-    <li><a href="#">Our Stores</a></li>
-    <li><a href="#">Rajasthan</a></li>
-    <li aria-current="page">Mahakal Supermart, Bijoliya</li>
-  </ol>
-</nav>
 
 <!-- ==================== HERO ==================== -->
 <section class="store-hero" id="store-top">
@@ -828,7 +811,9 @@ tbody tr:last-child td:nth-child(3){color:var(--body-grey)}
   <div class="container">
     <div class="footer-grid">
       <div class="footer-logo">
-                <span class="logo-fallback">G-Fresh <span class="yellow">Mart</span></span>
+        <img src="https://gfreshmart.com/static-assets/images/gfresh-logo-white.webp" alt="G Fresh Mart logo" height="48" width="130"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="logo-fallback">G-Fresh <span class="yellow">Mart</span></span>
         <p class="footer-tagline">Built on value, trust, and day-to-day demand.</p>
         <div class="footer-social">
           <a href="#" class="social-icon" aria-label="G Fresh Mart on Instagram">
