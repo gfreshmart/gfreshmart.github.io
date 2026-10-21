@@ -5,7 +5,7 @@
 Served from the `claude/laughing-lovelace-8pys06` branch:
 
 - **Mahakal Supermart, Bijoliya** — the working store page template:
-  https://gfreshmart.github.io/store-page/franchise-stores/bijoliya-mahakal-supermart/
+  https://gfreshmart.github.io/store-page/bijoliya-mahakal-supermart/
 - Repo root (existing careers page):
   https://gfreshmart.github.io/store-page/
 
@@ -14,7 +14,7 @@ becomes the template every other store page is generated from.
 
 ### Before moving this page to www.gfreshmart.com
 
-1. In `franchise-stores/bijoliya-mahakal-supermart/index.html`, change the robots meta back
+1. In `bijoliya-mahakal-supermart/index.html`, change the robots meta back
    to `<meta name="robots" content="index, follow">` and delete the preview comment above it.
    It is set to `noindex, nofollow` so the GitHub Pages copy does not compete with
    gfreshmart.com in search results.
@@ -26,7 +26,7 @@ becomes the template every other store page is generated from.
 5. Point the enquiry form at the CRM endpoint. The hidden `source_store` field carries
    `store_bijoliya_mahakal_supermart` for lead attribution.
 6. The `canonical`, Open Graph and JSON-LD URLs already point at
-   `https://www.gfreshmart.com/franchise-stores/bijoliya-mahakal-supermart` — no change needed.
+   `https://www.gfreshmart.com/bijoliya-mahakal-supermart` — no change needed.
 
 The two logo files load from `gfreshmart.com/static-assets/images/`. If that host blocks
 hotlinking from github.io, the page falls back to a styled "G-Fresh Mart" wordmark
@@ -50,6 +50,19 @@ Outstanding, each marked on the page itself:
   working capital
 
 Nothing on this page is invented — every unconfirmed field says "to be added".
+
+## Removing `store-page` from the URL
+
+`store-page` is the repository name, and GitHub puts the repo name in the path of every
+project Pages site — it cannot be removed by changing files. Two ways to drop it:
+
+1. **Rename the repo to `gfreshmart.github.io`.** GitHub then serves it as a user site at
+   the domain root, so the page becomes
+   `https://gfreshmart.github.io/bijoliya-mahakal-supermart/`.
+   Settings → General → Repository name. Pages has to be pointed at the branch again
+   afterwards, and the old `/store-page/...` URLs stop working.
+2. **Add a custom domain** (Settings → Pages → Custom domain), e.g. a staging subdomain,
+   which serves the page at `https://<domain>/bijoliya-mahakal-supermart/`.
 
 ## History
 
