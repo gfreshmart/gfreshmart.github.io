@@ -179,7 +179,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
 .shot-btn .photo{aspect-ratio:4/3;transition:box-shadow .3s ease,transform .3s ease}
 figure.wide .shot-btn .photo{aspect-ratio:8/5}
 .shot-btn:hover .photo{box-shadow:var(--card-shadow);transform:translateY(-3px)}
-figcaption{font-size:13px;line-height:1.55;color:var(--muted-text);margin-top:9px}
 @media(max-width:900px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.gallery-grid{grid-template-columns:1fr}.gallery-grid figure.wide{grid-column:span 1}}
 
@@ -882,9 +881,10 @@ tbody tr:last-child td:nth-child(3){color:var(--body-grey)}
        so any number of photographs still fills its rows cleanly */
     if (i === 0) fig.className = 'wide';
     if (p.cat) fig.setAttribute('data-cat', p.cat);
+    /* the caption is not shown under the tile; it stays as the image's alt text
+       and as the label in the lightbox */
     fig.innerHTML = '<button class="shot-btn" type="button" data-index="' + i + '" aria-label="Open photo: ' +
-                    plainText(p.cap) + '">' + photoFrame(p) + '</button>' +
-                    '<figcaption>' + p.cap + '</figcaption>';
+                    plainText(p.cap) + '">' + photoFrame(p) + '</button>';
     grid.appendChild(fig);
   });
 
