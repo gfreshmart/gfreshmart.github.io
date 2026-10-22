@@ -74,6 +74,10 @@ on the page: visits are arranged through the franchise team instead.
   `<div class="hero-video">` to that store's YouTube id, and the poster image `src`
   to `https://i.ytimg.com/vi/<id>/maxresdefault.jpg` — on each `<div class="hero-video">`.
   Both players are click-to-load, so YouTube is not contacted until a visitor presses play.
+  They are loaded with YouTube's controls, branding, keyboard shortcuts and related-video
+  overlays switched off, and the iframe takes no pointer events, so nothing inside it can be
+  clicked. The button covering the player is the only control: it plays and pauses through
+  the player's postMessage API, so no YouTube script runs on the page.
 - **Photographs:** the gallery is a uniform three-column grid — nine photographs make a
   tidy 3x3. Every tile is the same 16:9 size, so no photograph is a special case and the
   rows stay even whatever the count. Two columns under 900px, one under 560px.
