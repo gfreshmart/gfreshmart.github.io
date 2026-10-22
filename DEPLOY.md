@@ -78,16 +78,32 @@ on the page: visits are arranged through the franchise team instead.
   Both players are click-to-load, so YouTube is not contacted until a visitor presses play.
 - **Photographs:** the gallery is a uniform three-column grid — nine photographs make a
   tidy 3x3. Every tile is the same 16:9 size, so no photograph is a special case and the
-  rows stay even whatever the count. Drop files into
-  `bijoliya-mahakal-supermart/img/` and add a line to the grid in the markup:
+  rows stay even whatever the count. Two columns under 900px, one under 560px.
+
+  **Do not compress photographs before sending them.** Each one is stored at three widths
+  (800, 1200 and 1600px), generated from the original, and the browser downloads only the
+  width it needs. The grid tile displays at roughly 370px, so the 800px file is already
+  sharp on a retina screen at around 60-85 KB; the 1600px file is only fetched when a
+  visitor opens the lightbox. Squeezing a 2000px image under 100 KB throws away quality to
+  pay for pixels nobody sees.
+
+  To regenerate the variants after adding an original:
+  ```python
+  from PIL import Image
+  im = Image.open('img/name.webp').convert('RGB')
+  for w in (800, 1200):
+      im.resize((w, round(im.height*w/im.width)), Image.LANCZOS) \
+        .save(f'img/name-{w}.webp', 'WEBP', quality=82, method=6)
+  ```
+  Then add the figure to the grid:
   ```html
-  <figure data-cat="groceries"><img src="img/aisle.webp" alt="Grocery aisle"
+  <figure data-cat="groceries"><img src="img/name-800.webp"
+          srcset="img/name-800.webp 800w, img/name-1200.webp 1200w, img/name.webp 1600w"
+          sizes="(max-width:560px) 92vw, (max-width:900px) 46vw, 31vw"
+          data-full="img/name.webp" alt="Grocery aisle"
           width="1600" height="900" loading="lazy" decoding="async"></figure>
   ```
-  The alt text doubles as the lightbox caption, so it is written once. `data-cat` is
-  optional: the filter buttons build themselves from whichever categories are used and
-  disappear when none are. Keep files as WebP under 100 KB — at nine photographs that is
-  under 1 MB for the whole gallery, which keeps the page fast on a phone.
-  The grid drops to two columns under 900px and one under 560px.
+  The alt text doubles as the lightbox caption. `data-cat` is optional: the filter buttons
+  build themselves from whichever categories are used and disappear when none are.
 - **Enquiry form:** handled in JS with `preventDefault()` and shows a success state in place.
   The hidden `source_store` field carries `store_bijoliya_mahakal_supermart`.
