@@ -33,8 +33,6 @@ Confirmed: store name (Mahakal Supermart), owner (Piyush), Bijoliya, Rajasthan, 
 
 Still to collect, each marked on the page itself as "to be added":
 
-- Store tour video for the hero (a dummy video is embedded for now)
-- Owner's video testimonial (the dummy video stands in for now, in both the hero and the owner section)
 - Opening date, days to open, products stocked, team size
 
 Nothing on the page is invented — every unconfirmed field says so.
