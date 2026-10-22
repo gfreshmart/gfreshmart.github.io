@@ -39,6 +39,34 @@ Still to collect, each marked on the page itself as "to be added":
 
 Nothing on the page is invented — every unconfirmed field says so.
 
+## SEO
+
+Everything that does not need the final domain is in place:
+
+- Title (58 chars) and meta description (150 chars), both unique to this store
+- One `<h1>`, a clean `<h2>` hierarchy beneath it, and a `<main>` landmark
+- All 15 photographs are **in the HTML**, not injected by script, each with alt text and
+  explicit width/height. Crawlers that do not run JavaScript still see them, and the
+  dimensions stop the layout shifting as they load
+- Below-the-fold images lazy-load; the hero poster is marked `fetchpriority="high"` as the
+  likely LCP element
+- JSON-LD: `GroceryStore` (name, description, photographs, address, area served, parent
+  organization) and `FAQPage` whose five questions match the visible FAQ word for word
+- Open Graph and Twitter card tags, including a share image
+- `preconnect` to the font and video-thumbnail hosts
+
+### Before launch
+
+The page is deliberately `noindex, nofollow` while it lives on GitHub Pages, so this
+staging copy never competes with the real one in search.
+
+1. Delete the `robots` meta so the page can be indexed
+2. In the `BEFORE LAUNCH` comment block in `<head>`, set the canonical and `og:url` to the
+   page's real address and make `og:image` / `twitter:image` absolute
+3. Add the page to the site's `sitemap.xml`
+4. Point the header, footer and FAQ links at real pages — they are `href="#"` placeholders
+   now, so the page passes no internal link equity
+
 ## Working on it
 
 The store's exact street address, opening hours, phone number and map are deliberately not
