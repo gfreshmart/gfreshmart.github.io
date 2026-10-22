@@ -252,15 +252,18 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
 @media(max-width:900px){.video-grid{grid-template-columns:1fr;gap:34px}}
 
 /* ---------- fact tiles ---------- */
-.facts-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.fact-card{background:var(--white);border:1px solid var(--border-color);border-radius:12px;padding:24px;transition:border-color .3s ease,box-shadow .3s ease,transform .3s ease}
-.fact-card:hover{border-color:var(--primary-green);box-shadow:var(--card-shadow);transform:translateY(-3px)}
-.fact-icon{width:44px;height:44px;border-radius:12px;background:var(--light-green);display:grid;place-items:center;margin-bottom:16px}
-.fact-icon svg{width:20px;height:20px;stroke:var(--dark-green);fill:none;stroke-width:1.8}
-.fact-value{font-size:24px;font-weight:700;color:var(--dark-text);line-height:1.25}
-.fact-label{font-size:13px;font-weight:500;color:var(--muted-text);margin-top:4px}
-@media(max-width:900px){.facts-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:480px){.facts-grid{grid-template-columns:1fr}}
+.facts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.fact-card{position:relative;background:var(--white);border:1px solid var(--border-color);border-radius:14px;padding:30px 26px 26px;overflow:hidden;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
+.fact-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary-green) 0%,var(--accent-yellow) 100%);opacity:.85}
+.fact-card::after{content:"";position:absolute;top:-40px;right:-40px;width:130px;height:130px;border-radius:50%;background:var(--light-green);opacity:.5;z-index:0}
+.fact-card>*{position:relative;z-index:1}
+.fact-card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(27,94,32,.13);border-color:transparent}
+.fact-icon{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--primary-green) 0%,var(--dark-green) 100%);display:grid;place-items:center;margin-bottom:20px;box-shadow:0 6px 14px rgba(46,125,50,.28)}
+.fact-icon svg{width:22px;height:22px;stroke:var(--white);fill:none;stroke-width:1.8}
+.fact-value{font-size:27px;font-weight:700;color:var(--dark-text);line-height:1.2;letter-spacing:-.5px}
+.fact-label{font-size:13.5px;font-weight:500;color:var(--muted-text);margin-top:7px}
+@media(max-width:900px){.facts-grid{grid-template-columns:repeat(2,1fr);gap:16px}}
+@media(max-width:560px){.facts-grid{grid-template-columns:1fr}.fact-card{padding:26px 22px 22px}}
 
 /* ---------- callout card ---------- */
 .disclaimer-card{background:var(--white);border:1px solid var(--border-color);border-left:4px solid var(--accent-yellow);border-radius:12px;padding:26px}
@@ -548,10 +551,10 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
     <div class="facts-grid">
       <div class="fact-card"><span class="fact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 10h16M10 4v16"/></svg></span><div class="fact-value">1,100 sq ft</div><div class="fact-label">Store area</div></div>
       <div class="fact-card"><span class="fact-icon"><svg viewBox="0 0 24 24"><path d="M6 4h12M6 9h12M9 4c5 0 5 9 0 9M9 13l7 7"/></svg></span><div class="fact-value">Approx. ₹25 lakh</div><div class="fact-label">Total investment</div></div>
+      <div class="fact-card"><span class="fact-icon"><svg viewBox="0 0 24 24"><path d="M4 8h16l-1.5 11H5.5z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span><div class="fact-value">Green</div><div class="fact-label">Store theme</div></div>
+      <div class="fact-card"><span class="fact-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5 20a7 7 0 0 1 14 0"/></svg></span><div class="fact-value">Piyush</div><div class="fact-label">Franchise owner</div></div>
       <div class="fact-card"><span class="fact-icon"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div class="fact-value">Bijoliya</div><div class="fact-label">Bhilwara, Rajasthan</div></div>
       <div class="fact-card"><span class="fact-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M8 10h8M8 14h5"/></svg></span><div class="fact-value">311602</div><div class="fact-label">Pincode</div></div>
-      <div class="fact-card"><span class="fact-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0M16 11a3 3 0 0 0 0-6M17 20a5 5 0 0 0-2-4"/></svg></span><div class="fact-value">Piyush</div><div class="fact-label">Franchise owner</div></div>
-      <div class="fact-card"><span class="fact-icon"><svg viewBox="0 0 24 24"><path d="M4 8h16l-1.5 11H5.5z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span><div class="fact-value">Green</div><div class="fact-label">Store theme</div></div>
     </div>
     <p class="small-print" style="margin-top:24px">Figures reported by this franchise owner for this specific store. Investment, timelines and store performance differ by city, store size, rent and site conditions.</p>
   </div>
