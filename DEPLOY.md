@@ -76,20 +76,18 @@ on the page: visits are arranged through the franchise team instead.
   `<div class="hero-video">` to that store's YouTube id, and the poster image `src`
   to `https://i.ytimg.com/vi/<id>/maxresdefault.jpg` — on each `<div class="hero-video">`.
   Both players are click-to-load, so YouTube is not contacted until a visitor presses play.
-- **Photographs:** drop the files into `bijoliya-mahakal-supermart/img/` and list the
-  filenames in the `PHOTOS` array near the bottom of the page. That is the only edit:
-  ```js
-  'img/storefront.webp'                             // filename on its own
-  {src:'img/aisle.webp', cap:'Grocery aisle'}       // with your own caption
-  {src:'img/aisle.webp', cat:'groceries'}           // with a category
+- **Photographs:** the gallery is a uniform three-column grid — nine photographs make a
+  tidy 3x3. Every tile is the same 16:9 size, so no photograph is a special case and the
+  rows stay even whatever the count. Drop files into
+  `bijoliya-mahakal-supermart/img/` and add a line to the grid in the markup:
+  ```html
+  <figure data-cat="groceries"><img src="img/aisle.webp" alt="Grocery aisle"
+          width="1600" height="900" loading="lazy" decoding="async"></figure>
   ```
-  With no caption, one is read from the filename (`01-dals-and-pulses.webp` becomes
-  "Dals and pulses"). Categories are optional: the filter buttons build themselves from
-  whichever categories are used and disappear if none are. The first photograph leads the
-  grid at double width and the rest are uniform, so any number of photographs fills its
-  rows cleanly. Pre-existing category labels are in `CAT_LABELS`; a new category not listed
-  there is title-cased from its own name.
-- **Placeholder links:** header, breadcrumb and footer links are `href="#"` on purpose.
-  They are structure for the template, to be pointed somewhere when the template is adopted.
+  The alt text doubles as the lightbox caption, so it is written once. `data-cat` is
+  optional: the filter buttons build themselves from whichever categories are used and
+  disappear when none are. Keep files as WebP under 100 KB — at nine photographs that is
+  under 1 MB for the whole gallery, which keeps the page fast on a phone.
+  The grid drops to two columns under 900px and one under 560px.
 - **Enquiry form:** handled in JS with `preventDefault()` and shows a success state in place.
   The hidden `source_store` field carries `store_bijoliya_mahakal_supermart`.

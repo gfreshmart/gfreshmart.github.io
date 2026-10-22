@@ -211,15 +211,13 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
 .filter-chip{background:var(--white);border:1px solid var(--border-color);color:var(--body-grey);border-radius:50px;padding:9px 20px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:500;cursor:pointer;transition:all .3s ease}
 .filter-chip:hover{border-color:var(--primary-green);color:var(--primary-green)}
 .filter-chip[aria-pressed="true"]{background:var(--primary-green);border-color:var(--primary-green);color:var(--white)}
-.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;grid-auto-flow:dense}
-.gallery-grid figure.wide{grid-column:span 2}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .shot-btn{display:block;width:100%;border:none;padding:0;background:none;cursor:zoom-in;font:inherit;text-align:left}
-.gallery-grid figure img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;border:1px solid var(--border-color);background:var(--off-white);transition:box-shadow .3s ease,transform .3s ease}
-.gallery-grid figure.wide img{aspect-ratio:8/5}
+.gallery-grid figure img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px;border:1px solid var(--border-color);background:var(--off-white);transition:box-shadow .3s ease,transform .3s ease}
 .shot-btn:hover img{box-shadow:var(--card-shadow);transform:translateY(-3px)}
-.lightbox-img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}
+.lightbox-img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
 @media(max-width:900px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:520px){.gallery-grid{grid-template-columns:1fr}.gallery-grid figure.wide{grid-column:span 1}}
+@media(max-width:560px){.gallery-grid{grid-template-columns:1fr}.gallery-grid figure.wide{grid-column:span 1}}
 
 /* ---------- lightbox ---------- */
 .lightbox{position:fixed;inset:0;z-index:2000;background:rgba(26,26,26,.9);display:grid;place-items:center;padding:24px}
@@ -477,7 +475,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
     <p class="section-intro">Photographs from opening day at Mahakal Supermart. Click any image to view it larger.</p>
     <div class="gallery-filters" id="galleryFilters" role="group" aria-label="Filter photographs"></div>
     <div class="gallery-grid" id="galleryGrid">
-      <figure class="wide" data-cat="exterior"><img src="img/01-storefront-opening-day.webp" alt="The G-Fresh fascia with Mahakal Supermart, on opening day" width="1599" height="899" loading="lazy" decoding="async"></figure>
+      <figure data-cat="exterior"><img src="img/01-storefront-opening-day.webp" alt="The G-Fresh fascia with Mahakal Supermart, on opening day" width="1599" height="899" loading="lazy" decoding="async"></figure>
       <figure data-cat="household"><img src="img/02-home-care-aisle.webp" alt="Home care — detergents, cleaners and fabric care" width="1600" height="900" loading="lazy" decoding="async"></figure>
       <figure data-cat="interior"><img src="img/06-kitchenware-entrance.webp" alt="Kitchenware and storage at the front of the store" width="1600" height="900" loading="lazy" decoding="async"></figure>
       <figure data-cat="checkout"><img src="img/08-billing-counter.webp" alt="The billing counter during the opening-day rush" width="1600" height="900" loading="lazy" decoding="async"></figure>
@@ -811,8 +809,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
 
      The alt text doubles as the lightbox caption. data-cat is optional: the
      filter buttons build themselves from whichever categories are used and
-     disappear when none are. The first figure carries class="wide" and leads
-     the grid at double width.
+     disappear when none are. Every tile is the same size, three to a row, so
+     the grid stays even whatever the number of photographs.
      ============================================ */
   var grid = document.getElementById('galleryGrid');
   var figures = Array.prototype.slice.call(grid.querySelectorAll('figure'));
